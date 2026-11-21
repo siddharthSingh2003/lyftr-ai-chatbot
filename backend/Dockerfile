@@ -15,7 +15,8 @@ COPY entrypoint.sh /entrypoint.sh
 RUN sed -i 's/\r$//' /entrypoint.sh && chmod +x /entrypoint.sh \
     && useradd --create-home --uid 10001 appuser \
     && mkdir -p /data && chown appuser:appuser /data
-VOLUME ["/data"]
+# No VOLUME instruction: Railway rejects it. /data is mounted by the platform
+# (Railway volume) or by docker-compose (named volume `appdata`).
 EXPOSE 8000
 # entrypoint.sh fixes /data ownership, then runs the app as the non-root appuser.
 ENTRYPOINT ["/entrypoint.sh"]
