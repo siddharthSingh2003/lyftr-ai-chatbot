@@ -8,8 +8,14 @@ Next to every assistant reply, the UI shows where the answer came from
 output tokens for that request.
 
 ## 1. Live URLs
-- Frontend: `<frontend-url>`
-- Backend: `<backend-url>` (health: `<backend-url>/health`)
+- Frontend (Vercel): https://frontend-three-omega-98.vercel.app
+- Backend (Railway): https://lyftr-ai-chatbot-production-eb0fe319.up.railway.app
+  (health: https://lyftr-ai-chatbot-production-eb0fe319.up.railway.app/health)
+- Repository: https://github.com/siddharthSingh2003/lyftr-ai-chatbot
+
+The backend runs on Railway with a volume mounted at `/data`, so the SQLite file
+survives restarts and redeploys. `ENABLE_FAILURE_SIMULATION=true` is set on the
+deployed backend.
 
 ## 2. Run locally
 
@@ -43,7 +49,7 @@ npm run dev                                          # http://localhost:3000
 | Variable | Default | Meaning |
 |---|---|---|
 | `LLM_API_KEYS` | (required) | At least 2 comma-separated keys. Their ids are `key_1`, `key_2`, … in this order |
-| `LLM_MODELS` | `gemini/gemini-2.5-flash` | LiteLLM model names. Key *N* uses model *N*, cycling through the list if there are fewer models than keys |
+| `LLM_MODELS` | `gemini/gemini-2.5-flash` (deployed: `groq/openai/gpt-oss-120b`) | LiteLLM model names. Key *N* uses model *N*, cycling through the list if there are fewer models than keys |
 | `DATABASE_URL` | `sqlite:////data/app.db` | SQLite file location |
 | `ALLOWED_ORIGINS` | `http://localhost:3000` | CORS origins: scheme included, no trailing slash |
 | `ENABLE_FAILURE_SIMULATION` | `false` | `true` turns on the `X-Simulate-Failure` header |
