@@ -1,0 +1,21 @@
+.env
+.env.local
+frontend/.env*
+!.env.example
+
+# Python
+backend/.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.db
+*.db-wal
+*.db-shm
+
+# Node
+node_modules/
+frontend/dist/
+
+# Reference material, not part of the submission
+*.pdf
+README (2).md
